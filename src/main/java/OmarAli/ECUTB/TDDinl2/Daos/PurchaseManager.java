@@ -9,6 +9,11 @@ import java.util.Date;
 
 public class PurchaseManager implements IPurchaseManager {
     private PurchaseStore purchaseStore;
+
+    public PurchaseManager(PurchaseStore purchaseStore) {
+        this.purchaseStore = purchaseStore;
+    }
+
     @Override
     public float sumOfMonth(int year, int month) {
         Date start = new Date(year, month - 1, 0);

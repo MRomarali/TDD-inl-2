@@ -26,7 +26,7 @@ public class PurchaseStoreTest
     Category category1;
     Category category2;
     @BeforeEach
-    public void initTest(){
+    public void setUp(){
         purchaseStore = new PurchaseStore();
 
         Date start = new Date(2067, Calendar.JANUARY,1);
