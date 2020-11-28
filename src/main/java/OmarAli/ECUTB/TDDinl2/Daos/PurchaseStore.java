@@ -18,6 +18,10 @@ public class PurchaseStore implements IPurchaseStore {
     public void addPurchase(Purchase purchase){
         purchases.add(purchase);
     }
+
+    public PurchaseStore() {
+    }
+
     @Override
     public Purchase[] getPurchases(Date startDate, Date endDate) {
         Purchase[] purchasesArray;

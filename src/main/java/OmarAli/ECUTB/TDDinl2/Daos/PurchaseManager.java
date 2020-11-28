@@ -28,9 +28,9 @@ public class PurchaseManager implements IPurchaseManager {
 
     @Override
     public float[] monthlyAverage(int year) {
-        Date start = new Date(year, Calendar.FEBRUARY , 0);
-        Date end = new Date(year +1, Calendar.MAY, 0);
-        float[] array = new float[12];
+        Date start = new Date(year, Calendar.JANUARY , 0);
+        Date end = new Date(year +1, Calendar.JANUARY, 0);
+        float[] array = new float[3];
         Purchase[] purchases = purchaseStore.getPurchases(start,end);
         for (int i = 0; i < array.length; i++) {
             float sum = 0;
@@ -50,8 +50,8 @@ public class PurchaseManager implements IPurchaseManager {
     public float[] yearlyAveragePerCategory(int year) {
         Category[] categories = purchaseStore.getAllCategories();
         float[] floats = new float[categories.length];
-        Date start = new Date(year, Calendar.FEBRUARY , 0);
-        Date end = new Date(year +1, Calendar.MAY, 0);
+        Date start = new Date(year, Calendar.JANUARY , 0);
+        Date end = new Date(year +1, Calendar.JANUARY, 0);
         Purchase[] purchases = purchaseStore.getPurchases(start,end);
         int num = 0;
         for (Category cat:categories) {

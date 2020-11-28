@@ -31,25 +31,23 @@ public class PurchaseStoreTest
 
         Date start = new Date(2067, Calendar.JANUARY,1);
         Date end = new Date(2019,Calendar.JANUARY,1);
-        purchase1 = new Purchase(0,start, 2, "First purchase", 0);
-        purchase2 = new Purchase(0,end, 1, "Second purchase", 2);
-        category1 = new Category(0,"category1");
-        category2 = new Category(1,"category2");
+        purchase1 = new Purchase(1,start, 1, "First purchase", 1);
+        purchase2 = new Purchase(2,end, 2, "Second purchase", 2);
+        purchaseStore.addPurchase(purchase1);
+        purchaseStore.addPurchase(purchase2);
+        category1 = new Category(1,"category1");
+        category2 = new Category(2,"category2");
+        purchaseStore.addCategory(category1);
+        purchaseStore.addCategory(category2);
     }
     @Test
     public void getPurchasesTest()
     {
-        /*
-        Purchase purchase = new Purchase(1, calendar,150.0f,"Purchase1",1);
-        Purchase[] purchases = new Purchase[]{purchase};
-        */
-
-
         Purchase[] expected = {purchase1, purchase2};
         Date start = new Date(2019,Calendar.JUNE,6);
         Date end = new Date(2020,Calendar.MAY,5);
 
-        assertEquals(expected, purchaseStore.getPurchases(start,end) );
+        assertArrayEquals(expected, purchaseStore.getPurchases(start,end) );
 
     }
     @Test
@@ -58,7 +56,7 @@ public class PurchaseStoreTest
         Purchase[] expected = {purchase1, purchase2};
         Date start = new Date(2019,Calendar.JUNE,6);
         Date end = new Date(2020,Calendar.MAY,5);
-        assertEquals(expected, purchaseStore.getPurchasesByCategory(start,end, 1));
+        assertArrayEquals(expected, purchaseStore.getPurchasesByCategory(start,end, 1));
 
     }
     @Test
