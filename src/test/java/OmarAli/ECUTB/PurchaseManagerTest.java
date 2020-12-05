@@ -43,29 +43,12 @@ public class PurchaseManagerTest {
     @Test
     public void sumOfMonthTest()
     {
-        /*
-        when(purchaseStore.getPurchases(new Date(2002,02,07), new Date(2005,06,06)))
-                .thenReturn(new Purchase[]{
-                purchase1, purchase2
-                });
-        assertEquals(500, purchaseManager.sumOfMonth(2002,06));
-
-         */
         assertEquals(1200, purchaseManager.sumOfMonth(2019,1));
         assertEquals(550, purchaseManager.sumOfMonth(1967,1));
     }
     @Test
     public void monthlyAverageTest()
     {
-        /*
-        when(purchaseStore.getPurchases(new Date(2002,02,07), new Date(2005,06,06)))
-                .thenReturn(new Purchase[]{
-                        purchase1, purchase2
-                });
-        float[] expected = {4,3,2,66,4,2,11,100};
-        assertArrayEquals(expected, purchaseManager.monthlyAverage(2002));
-
-         */
         float[] expected1 = {10,10,10};
         float[] expected2 = {10,10,10};
         assertArrayEquals(expected1, purchaseManager.monthlyAverage(1967));
@@ -74,14 +57,6 @@ public class PurchaseManagerTest {
     @Test
     public void yearlyAveragePerCategoryTest()
     {
-        /*
-        when(purchaseStore.getAllCategories()).thenReturn(new Category[]{category1, category2});
-        when(purchaseStore.getPurchases(new Date(2002, 3, 5), new Date(2006, 06, 06)))
-                .thenReturn(new Purchase[]{purchase1, purchase2});
-        float[] expected = {10,20,30};
-        assertArrayEquals(expected, purchaseManager.yearlyAveragePerCategory(2008));
-
-         */
         float[] expected1 = {10,10};
         float[] expected2 = {10,10};
         assertArrayEquals(expected1, purchaseManager.yearlyAveragePerCategory(2010));
