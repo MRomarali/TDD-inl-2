@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PurchaseManagerMockitoTest {
@@ -31,38 +31,51 @@ public class PurchaseManagerMockitoTest {
         purchase2 = new Purchase(2,end, 1200, "Second purchase", 2);
         category1 = new Category(1,"category1");
         category2 = new Category(2,"category2");
+
     }
 
     @Test
-    public void canInstantiateClass(){
-        assertNotNull(purchaseManager);
-    }
-    @Test
     public void sumOfMonthTest()
     {
-        when(purchaseStore.getPurchases(new Date(2002, Calendar.MARCH,7), new Date(2005, Calendar.JULY,6)))
-                .thenReturn(new Purchase[]{
-                purchase1, purchase2
-                });
-        assertEquals(1200, purchaseManager.sumOfMonth(2019,1));
+        purchaseStore = mock(PurchaseStore.class);
+        purchaseManager = new PurchaseManager( purchaseStore);
+
+        when(purchaseStore.getPurchases(new Date(1967, Calendar.JANUARY, 0),
+                new Date(1968, Calendar.JANUARY, 0)))
+                .thenReturn(new Purchase[]{purchase1, purchase2});
+
+        float[] expected1 = {1750, 0, 0};
+
+        assertArrayEquals(expected1, purchaseManager.monthlyAverage(1967));
     }
     @Test
     public void monthlyAverageTest()
     {
-        when(purchaseStore.getPurchases(new Date(2002,02,07), new Date(2005,06,06)))
-                .thenReturn(new Purchase[]{
-                        purchase1, purchase2
-                });
-        float[] expected = {4,3,2,66,4,2,11,100};
-        assertArrayEquals(expected, purchaseManager.monthlyAverage(2002));
+        purchaseStore = mock(PurchaseStore.class);
+        purchaseManager = new PurchaseManager( purchaseStore);
+
+        when(purchaseStore.getPurchases(new Date(2019, 0, 0),
+                new Date(2020, 0, 0)))
+                .thenReturn(new Purchase[]{purchase1, purchase2});
+
+        float[] expected1 = {1750, 0, 0};
+
+        assertArrayEquals(expected1, purchaseManager.monthlyAverage(2019));
     }
     @Test
     public void yearlyAveragePerCategoryTest()
     {
-        when(purchaseStore.getAllCategories()).thenReturn(new Category[]{category1, category2});
-        when(purchaseStore.getPurchases(new Date(2002, 3, 5), new Date(2006, 06, 06)))
+        purchaseStore = mock(PurchaseStore.class);
+        purchaseManager = new PurchaseManager( purchaseStore);
+
+        when(purchaseStore.getAllCategories())
+                .thenReturn(new Category[]{category1,category2});
+
+        when(purchaseStore.getPurchases(new Date(1967, Calendar.JANUARY, 0),
+                new Date(1968, Calendar.JANUARY, 0)))
                 .thenReturn(new Purchase[]{purchase1, purchase2});
-        float[] expected = {10,20,30};
-        assertArrayEquals(expected, purchaseManager.yearlyAveragePerCategory(2008));
-    }
+
+        float[] expected1 = {550,1200};
+
+        assertArrayEquals(expected1, purchaseManager.yearlyAveragePerCategory(1967));}
 }

@@ -49,18 +49,18 @@ public class PurchaseManagerTest {
     @Test
     public void monthlyAverageTest()
     {
-        float[] expected1 = {10,10,10};
-        float[] expected2 = {10,10,10};
+        float[] expected1 = {550,0,0};
+        float[] expected2 = {1200,0,0};
         assertArrayEquals(expected1, purchaseManager.monthlyAverage(1967));
         assertArrayEquals(expected2, purchaseManager.monthlyAverage(2019));
     }
     @Test
     public void yearlyAveragePerCategoryTest()
     {
-        float[] expected1 = {10,10};
-        float[] expected2 = {10,10};
-        assertArrayEquals(expected1, purchaseManager.yearlyAveragePerCategory(2010));
-        assertArrayEquals(expected2, purchaseManager.yearlyAveragePerCategory(2020));
+        float[] expected1 = {550,0};
+        float[] expected2 = {0,1200};
+        assertArrayEquals(expected1, purchaseManager.yearlyAveragePerCategory(1967));
+        assertArrayEquals(expected2, purchaseManager.yearlyAveragePerCategory(2019));
 
     }
 }

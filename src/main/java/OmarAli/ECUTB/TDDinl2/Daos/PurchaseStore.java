@@ -5,6 +5,7 @@ import OmarAli.ECUTB.TDDinl2.Entity.Purchase;
 import OmarAli.ECUTB.TDDinl2.Interfaces.IPurchaseStore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -33,15 +34,12 @@ public class PurchaseStore implements IPurchaseStore {
     }
 
     @Override
-    public Purchase[] getPurchasesByCategory(Date startDate, Date endDate, int catId) {
-        Purchase[] purchasesArray;
-        purchasesArray = purchases.stream()
-                .filter(purchase -> purchase.getDate().after(startDate)
-                        && purchase.getDate().before(endDate))
+    public Purchase[] getPurchasesByCategory(Date start, Date end, int catId) {
+        var purchases = getPurchases(start, end);
+        return Arrays.stream(purchases)
                 .filter(purchase -> purchase.getCategoryId() == catId)
                 .toArray(Purchase[]::new);
-        return purchasesArray;
-}
+    }
 
     @Override
     public Category[] getAllCategories() {

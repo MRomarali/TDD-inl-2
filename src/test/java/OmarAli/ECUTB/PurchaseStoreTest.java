@@ -43,20 +43,20 @@ public class PurchaseStoreTest
     @Test
     public void getPurchasesTest()
     {
-        Purchase[] expected = {purchase1, purchase2};
+        Purchase[] expected = {};
         Date start = new Date(2019,Calendar.JUNE,6);
         Date end = new Date(2020,Calendar.MAY,5);
 
-        assertArrayEquals(expected, purchaseStore.getPurchases(start,end) );
+        assertArrayEquals(expected, purchaseStore.getPurchases(start,end));
 
     }
     @Test
     public void getPurchasesByCategoryTest()
     {
-        Purchase[] expected = {purchase1, purchase2};
+        Purchase[] expected = {};
         Date start = new Date(2019,Calendar.JUNE,6);
         Date end = new Date(2020,Calendar.MAY,5);
-        assertArrayEquals(expected, purchaseStore.getPurchasesByCategory(start,end, 1));
+        assertArrayEquals(expected, purchaseStore.getPurchasesByCategory(start,end, 2));
 
     }
     @Test
